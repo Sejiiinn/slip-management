@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<div class="container">
+
+  <form action="/members/new" method="post">
+    <div class="form-group">
+      <label for="name">사번</label>
+      <input type="text" id="id" name="id" placeholder="사번을 입력하세요">
+      <p></p>
+      <label for="name">이름</label>
+      <input type="text" id="name" name="name" placeholder="이름을 입력하세요">
+      <p></p>
+      <label for="name">운영비</label>
+      <input type="text" id="total" name="total" placeholder="사용 가능한 운영비를 입력하세요">
+    </div>
+    <button type="submit">등록</button>
+  </form>
+
+</div>
+
+</body>
+</html>
