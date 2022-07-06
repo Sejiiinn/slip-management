@@ -1,7 +1,7 @@
 package sejin.slipmanagement.repository;
 
 import org.apache.ibatis.annotations.Mapper;
-import sejin.slipmanagement.domain.entity.Member;
+import sejin.slipmanagement.domain.Member;
 
 import java.util.List;
 import java.util.Optional;

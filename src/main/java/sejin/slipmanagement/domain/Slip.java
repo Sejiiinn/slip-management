@@ -1,4 +1,4 @@
-package sejin.slipmanagement.domain.entity;
+package sejin.slipmanagement.domain;
 
 import lombok.Data;
 

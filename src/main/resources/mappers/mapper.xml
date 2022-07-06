@@ -4,8 +4,19 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="sejin.slipmanagement.repository.MemberRepository">
-    <select id="findAll" resultType="sejin.slipmanagement.domain.entity.Member">
-        SELECT * FROM member
+    <select id="findAll" resultType="sejin.slipmanagement.domain.Member">
+        SELECT id,name FROM member
     </select>
 
+    <select id="findById" resultType="sejin.slipmanagement.domain.Member">
+        SELECT id,name FROM member WHERE id=#{id}
+    </select>
+
+    <select id="findByName" resultType="sejin.slipmanagement.domain.Member">
+        SELECT id,name FROM member WHERE name=#{name}
+    </select>
+
+    <select id="save" resultType="sejin.slipmanagement.domain.Member">
+        INSERT INTO member(id,name) VALUES(#{id},#{name})
+    </select>
 </mapper>

@@ -2,13 +2,11 @@ package sejin.slipmanagement.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import sejin.slipmanagement.domain.entity.Member;
-import sejin.slipmanagement.domain.entity.Slip;
+import sejin.slipmanagement.domain.Member;
 import sejin.slipmanagement.service.MemberService;
 
 import java.util.List;
@@ -18,7 +16,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MemberController {
 
-    private MemberService memberService;
+    private final MemberService memberService;
 
     @GetMapping("/members/new")
     public String createForm() {
@@ -26,11 +24,11 @@ public class MemberController {
     }
 
     @PostMapping("/members/new")
-    public String create(MemberForm form) {
+    public String create(MemberDTO memberDTO) {
         Member member = new Member();
 
-        member.setName(form.getName());
-        member.setId(form.getId());
+        member.setName(memberDTO.getName());
+        member.setId(memberDTO.getId());
 
         memberService.join(member);
 
@@ -41,6 +39,6 @@ public class MemberController {
     public String list(Model model) {
         List<Member> members = memberService.findMembers();
         model.addAttribute("members", members);
-        return "members/memberList";
+        return "members/membersList";
     }
 }
