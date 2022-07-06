@@ -21,7 +21,7 @@ public class ManagementController {
     @GetMapping("")
     public String firstPage(Model model) {
         List<ManagementDTO> list = manageService.searchAll();
-        list.stream().forEach(s -> System.out.println(s));
+        list.stream().forEach(s -> System.out.println(s)); // 리스트에 잘 담겼는지
         model.addAttribute("list", list);
         return "manage/management";
     }

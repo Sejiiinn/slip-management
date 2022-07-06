@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org">
 <meta charset="UTF-8">
 <body>
 
@@ -13,9 +13,9 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="obj : ${list}">
-                <td th:text="${obj.member.id}"></td>
-                <td th:text="${obj.member.name}"></td>
+            <tr th:each="memberDTO,slipDTO : ${list}">
+                <td th:text="${memberDTO.id}"></td>
+                <td th:text="${memberDTO.name}"></td>
             </tr>
             </tbody>
         </table>
