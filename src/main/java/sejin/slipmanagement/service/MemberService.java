@@ -1,6 +1,7 @@
 package sejin.slipmanagement.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.transaction.annotation.Transactional;
 import sejin.slipmanagement.controller.MemberDTO;
 import sejin.slipmanagement.domain.Member;
 import sejin.slipmanagement.domain.Slip;
@@ -12,6 +13,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class MemberService {
 
     private final MemberRepository memberRepository;
@@ -20,13 +22,14 @@ public class MemberService {
     /**
      * 회원 가입
      */
+    @Transactional
     public int join(MemberDTO memberDTO) {
         Member member = new Member();
         Slip slip = new Slip();
 
         member.setId(memberDTO.getId());
         member.setName(memberDTO.getName());
-        slip.setId(memberDTO.getId());
+        slip.setMember_id(memberDTO.getId());
 
         validateDuplicateMember(member); // 중복 회원 검증
 

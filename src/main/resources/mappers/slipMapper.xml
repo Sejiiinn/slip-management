@@ -5,6 +5,6 @@
 
 <mapper namespace="sejin.slipmanagement.repository.SlipRepository">
     <insert id="save">
-        INSERT INTO slip(id,total,used) VALUES(#{id},0,0)
+        INSERT INTO slip(member_id,total,used) VALUES(#{member_id},0,0)
     </insert>
 </mapper>

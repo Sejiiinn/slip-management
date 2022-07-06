@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import sejin.slipmanagement.domain.Member;
 import sejin.slipmanagement.service.MemberService;
 
@@ -14,16 +15,17 @@ import java.util.List;
 @Slf4j
 @Controller
 @RequiredArgsConstructor
+@RequestMapping("/members")
 public class MemberController {
 
     private final MemberService memberService;
 
-    @GetMapping("/members/new")
+    @GetMapping("/new")
     public String createForm() {
         return "members/createMemberForm";
     }
 
-    @PostMapping("/members/new")
+    @PostMapping("/new")
     public String create(MemberDTO memberDTO) {
 
         try{
@@ -35,7 +37,7 @@ public class MemberController {
         return "redirect:/";
     }
 
-    @GetMapping("/members")
+    @GetMapping("")
     public String list(Model model) {
         List<Member> members = memberService.findMembers();
         model.addAttribute("members", members);

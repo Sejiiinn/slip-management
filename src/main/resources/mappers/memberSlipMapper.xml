@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="sejin.slipmanagement.repository.ManagementDAO">
+    <resultMap id="memberMap" type="sejin.slipmanagement.controller.MemberDTO">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+    </resultMap>
+
+    <resultMap id="slipMap" type="sejin.slipmanagement.controller.SlipDTO">
+        <result property="member_id" column="member_id"/>
+        <result property="total" column="total"/>
+        <result property="used" column="used"/>
+    </resultMap>
+
+    <resultMap type="sejin.slipmanagement.controller.ManagementDTO" id="memberSlipMap">
+        <collection property="memberDTO" resultMap="memberMap"/>
+        <collection property="slipDTO" resultMap="slipMap"/>
+    </resultMap>
+
+
+    <select id="findAll" resultMap="memberSlipMap">
+        SELECT m.id, m.name, s.member_id, s.total, s.used
+        FROM member m
+        JOIN slip s
+        ON m.id = s.member_id;
+    </select>
+</mapper>

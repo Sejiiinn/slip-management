@@ -4,7 +4,8 @@ import lombok.Data;
 import org.springframework.stereotype.Component;
 
 @Data
-public class MemberDTO {
-    private int id;
-    private String name;
+public class SlipDTO {
+    private int member_id;
+    private int total;
+    private int used;
 }
