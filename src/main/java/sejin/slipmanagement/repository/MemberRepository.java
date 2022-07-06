@@ -8,7 +8,7 @@ import java.util.Optional;
 
 @Mapper
 public interface MemberRepository {
-    Member save(Member member);
+    void save(Member member);
 
     Optional<Member> findById(int id);
 

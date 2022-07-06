@@ -25,12 +25,12 @@ public class MemberController {
 
     @PostMapping("/members/new")
     public String create(MemberDTO memberDTO) {
-        Member member = new Member();
 
-        member.setName(memberDTO.getName());
-        member.setId(memberDTO.getId());
-
-        memberService.join(member);
+        try{
+            memberService.join(memberDTO);
+        } catch (IllegalStateException e){
+            return "/members/alreadyExist";
+        }
 
         return "redirect:/";
     }

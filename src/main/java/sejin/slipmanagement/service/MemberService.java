@@ -1,9 +1,12 @@
 package sejin.slipmanagement.service;
 
 import lombok.RequiredArgsConstructor;
+import sejin.slipmanagement.controller.MemberDTO;
 import sejin.slipmanagement.domain.Member;
+import sejin.slipmanagement.domain.Slip;
 import sejin.slipmanagement.repository.MemberRepository;
 import org.springframework.stereotype.Service;
+import sejin.slipmanagement.repository.SlipRepository;
 
 import java.util.List;
 
@@ -12,13 +15,24 @@ import java.util.List;
 public class MemberService {
 
     private final MemberRepository memberRepository;
+    private final SlipRepository slipRepository;
 
     /**
      * 회원 가입
      */
-    public int join(Member member) {
+    public int join(MemberDTO memberDTO) {
+        Member member = new Member();
+        Slip slip = new Slip();
+
+        member.setId(memberDTO.getId());
+        member.setName(memberDTO.getName());
+        slip.setId(memberDTO.getId());
+
         validateDuplicateMember(member); // 중복 회원 검증
+
         memberRepository.save(member);
+        slipRepository.save(slip);
+
         return member.getId();
     }
     

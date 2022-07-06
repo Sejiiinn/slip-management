@@ -16,7 +16,7 @@
         SELECT id,name FROM member WHERE name=#{name}
     </select>
 
-    <select id="save" resultType="sejin.slipmanagement.domain.Member">
+    <insert id="save">
         INSERT INTO member(id,name) VALUES(#{id},#{name})
-    </select>
+    </insert>
 </mapper>
