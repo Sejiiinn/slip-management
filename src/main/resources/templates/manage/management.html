@@ -5,6 +5,18 @@
 
 <div class="container">
     <div>
+        <form action="/manage/" method="post">
+            <div class="form-group">
+                <select name="searchType">
+                    <option value="">조건선택</option>
+                    <option value="condition_id">사번</option>
+                    <option value="condition_name">이름</option>
+                </select>
+                <input type="text" id="condition" name="condition">
+                <button type="submit">검색</button>
+            </div>
+        </form>
+
         <table>
             <thead>
             <tr>

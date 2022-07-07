@@ -27,4 +27,20 @@
         JOIN slip s
         ON m.id = s.member_id;
     </select>
+
+    <select id="findByCondition" resultMap="memberSlipMap">
+        SELECT m.id, m.name, s.member_id, s.total, s.used
+        FROM member m
+        JOIN slip s
+        ON m.id = s.member_id
+
+        <where>
+            <if test="searchType == 'condition_id'">
+                m.id = #{condition}
+            </if>
+            <if test="searchType == 'condition_name'">
+                m.name = #{condition}
+            </if>
+        </where>
+    </select>
 </mapper>
