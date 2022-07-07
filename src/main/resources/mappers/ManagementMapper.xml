@@ -41,6 +41,9 @@
             <if test="searchType == 'condition_name'">
                 m.name = #{condition}
             </if>
+            <if test="searchType == 'condition_money'">
+                s.total-s.used >= #{condition}
+            </if>
         </where>
     </select>
 </mapper>
