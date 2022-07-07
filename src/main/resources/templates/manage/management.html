@@ -10,12 +10,18 @@
             <tr>
                 <th>사번</th>
                 <th>이름</th>
+                <th>총 운영비</th>
+                <th>사용한 운영비</th>
+                <th>사용 가능한 운영비</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="memberDTO,slipDTO : ${list}">
-                <td th:text="${memberDTO.id}"></td>
-                <td th:text="${memberDTO.name}"></td>
+            <tr th:each="item : ${list}">
+                <td th:text="${item.memberDTO.id}"></td>
+                <td th:text="${item.memberDTO.name}"></td>
+                <td th:text="${item.slipDTO.total}"></td>
+                <td th:text="${item.slipDTO.used}"></td>
+                <td th:text="${item.slipDTO.total - item.slipDTO.used}"></td>
             </tr>
             </tbody>
         </table>

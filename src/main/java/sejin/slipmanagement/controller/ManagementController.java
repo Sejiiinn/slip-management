@@ -22,7 +22,7 @@ public class ManagementController {
     public String firstPage(Model model) {
         List<ManagementDTO> list = manageService.searchAll();
         list.stream().forEach(s -> System.out.println(s)); // 리스트에 잘 담겼는지
-        model.addAttribute("list", list);
+        model.addAttribute("list", manageService.searchAll());
         return "manage/management";
     }
 }
