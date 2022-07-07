@@ -62,4 +62,8 @@
             ON m.id = s.member_id
             WHERE m.name IN (${spend_name}))
     </update>
+
+    <insert id="slipSave">
+        INSERT INTO history(people,place,count,expense) VALUES(#{spend_name},#{spend_place},${spend_count},${spend_amount})
+    </insert>
 </mapper>

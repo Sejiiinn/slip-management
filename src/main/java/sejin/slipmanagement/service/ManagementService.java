@@ -32,7 +32,10 @@ public class ManagementService {
     }
 
     @Transactional
-    public void spent(SpendDTO spendDTO) {
+    public void spending(SpendDTO spendDTO) {
+
+        managementDAO.slipSave(spendDTO);
+
         spendDTO.setSpend_name("'"+spendDTO.getSpend_name().replace(" ","").replace(",","','")+"'");
 //        System.out.println(spendDTO.getSpend_name());
         managementDAO.spend(spendDTO);

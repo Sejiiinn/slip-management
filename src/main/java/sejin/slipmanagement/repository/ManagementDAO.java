@@ -18,4 +18,6 @@ public interface ManagementDAO {
     void allocation(AllocationDTO allocationDTO);
 
     void spend(SpendDTO spendDTO);
+
+    void slipSave(SpendDTO spendDTO);
 }

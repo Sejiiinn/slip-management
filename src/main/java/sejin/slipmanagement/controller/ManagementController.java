@@ -38,7 +38,7 @@ public class ManagementController {
 
     @PostMapping("/spend")
     public String spending(SpendDTO spendDTO) {
-        managementService.spent(spendDTO);
+        managementService.spending(spendDTO);
         return "manage/spent";
     }
 }
