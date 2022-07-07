@@ -29,4 +29,10 @@ public class ManagementController {
         model.addAttribute("list", managementService.searchCondition(searchDTO));
         return "manage/management";
     }
+
+    @PostMapping("/allocation")
+    public String allocation(AllocationDTO allocationDTO) {
+        managementService.allocationAll(allocationDTO);
+        return "manage/allocated";
+    }
 }

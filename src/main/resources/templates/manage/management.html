@@ -5,6 +5,8 @@
 
 <div class="container">
     <div>
+        <a href="/">뒤로</a>
+        <p></p>
         <form action="/manage/" method="post">
             <div class="form-group">
                 <select name="searchType">
@@ -13,16 +15,25 @@
                     <option value="condition_name">이름</option>
                     <option value="condition_money">잔여 운영비</option>
                 </select>
-                <input type="text" id="condition" name="condition">
+                <input type="text" id="condition" name="condition" placeholder="검색 조건을 입력하세요">
                 <button type="submit">검색</button>
             </div>
         </form>
+        <p></p>
 
-        <table>
+        <form action="/manage/allocation" method="post">
+            <div class="form-group">
+                <input type="text" id="amount" name="amount" placeholder="총액을 입력하세요">
+                <button type="submit">할당</button>
+            </div>
+        </form>
+        <p></p>
+
+        <table border="1">
             <thead>
             <tr>
-                <th>사번</th>
-                <th>이름</th>
+                <th width="100px">사번</th>
+                <th width="100px">이름</th>
                 <th>총 운영비</th>
                 <th>사용한 운영비</th>
                 <th>사용 가능한 운영비</th>

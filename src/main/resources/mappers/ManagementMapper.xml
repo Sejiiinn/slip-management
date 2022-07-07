@@ -46,4 +46,8 @@
             </if>
         </where>
     </select>
+
+    <update id="allocation">
+        UPDATE slip SET total = total + ${amount} / (SELECT COUNT(*) FROM slip)
+    </update>
 </mapper>
