@@ -26,7 +26,7 @@ public class ManagementController {
 
     @PostMapping("")
     public String searching(Model model, SearchDTO searchDTO) {
-        model.addAttribute("list", managementService.searchCondition(searchDTO));
+        model.addAttribute("list", managementService.searchByCondition(searchDTO));
         return "manage/management";
     }
 
@@ -34,5 +34,11 @@ public class ManagementController {
     public String allocation(AllocationDTO allocationDTO) {
         managementService.allocationAll(allocationDTO);
         return "manage/allocated";
+    }
+
+    @PostMapping("/spend")
+    public String spending(SpendDTO spendDTO) {
+        managementService.spent(spendDTO);
+        return "manage/spent";
     }
 }

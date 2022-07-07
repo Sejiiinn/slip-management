@@ -48,6 +48,18 @@
     </select>
 
     <update id="allocation">
-        UPDATE slip SET total = total + ${amount} / (SELECT COUNT(*) FROM slip)
+        UPDATE slip
+        SET total = total + ${amount} / (SELECT COUNT(*) FROM slip)
+    </update>
+
+    <update id="spend">
+        UPDATE slip
+        SET used = used + ${spend_amount}/${spend_count}
+        WHERE member_id IN
+        (SELECT id
+            FROM member m
+            JOIN slip s
+            ON m.id = s.member_id
+            WHERE m.name IN (${spend_name}))
     </update>
 </mapper>

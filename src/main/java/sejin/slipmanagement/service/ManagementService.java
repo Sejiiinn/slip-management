@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import sejin.slipmanagement.controller.AllocationDTO;
 import sejin.slipmanagement.controller.ManagementDTO;
 import sejin.slipmanagement.controller.SearchDTO;
+import sejin.slipmanagement.controller.SpendDTO;
 import sejin.slipmanagement.repository.ManagementDAO;
 
 import java.util.List;
@@ -21,12 +22,19 @@ public class ManagementService {
         return managementDAO.findAll();
     }
 
-    public List<ManagementDTO> searchCondition(SearchDTO searchDTO) {
+    public List<ManagementDTO> searchByCondition(SearchDTO searchDTO) {
         return managementDAO.findByCondition(searchDTO);
     }
 
     @Transactional
     public void allocationAll(AllocationDTO allocationDTO) {
         managementDAO.allocation(allocationDTO);
+    }
+
+    @Transactional
+    public void spent(SpendDTO spendDTO) {
+        spendDTO.setSpend_name("'"+spendDTO.getSpend_name().replace(" ","").replace(",","','")+"'");
+//        System.out.println(spendDTO.getSpend_name());
+        managementDAO.spend(spendDTO);
     }
 }
