@@ -3,6 +3,7 @@ package sejin.slipmanagement.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 import sejin.slipmanagement.controller.AllocationDTO;
 import sejin.slipmanagement.controller.ManagementDTO;
 import sejin.slipmanagement.controller.SearchDTO;
@@ -35,6 +36,7 @@ public class ManagementService {
     public void spending(SpendDTO spendDTO) {
 
         managementDAO.slipSave(spendDTO);
+        spendDTO.setSpend_count(StringUtils.countOccurrencesOf(spendDTO.getSpend_name(),",")+1);
 
         spendDTO.setSpend_name("'"+spendDTO.getSpend_name().replace(" ","").replace(",","','")+"'");
 //        System.out.println(spendDTO.getSpend_name());
