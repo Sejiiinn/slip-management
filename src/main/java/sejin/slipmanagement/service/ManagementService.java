@@ -9,6 +9,7 @@ import sejin.slipmanagement.dto.ManagementDTO;
 import sejin.slipmanagement.dto.SearchDTO;
 import sejin.slipmanagement.dto.SpendDTO;
 import sejin.slipmanagement.repository.ManagementRepository;
+import sejin.slipmanagement.repository.MemberRepository;
 
 import java.util.List;
 
@@ -18,6 +19,7 @@ import java.util.List;
 public class ManagementService {
 
     private final ManagementRepository managementRepository;
+    private final MemberRepository memberRepository;
 
     public List<ManagementDTO> searchAll() {
         return managementRepository.findAll();
@@ -34,6 +36,14 @@ public class ManagementService {
 
     @Transactional
     public void spending(SpendDTO spendDTO) {
+
+        String[] peopleList = spendDTO.getSpendName().split(",");
+        for (String person:
+             peopleList) {
+            if(memberRepository.findByName(person).isEmpty()){
+                throw new NullPointerException("올바르지 않은 이름이 있습니다.");
+            }
+        }
 
         spendDTO.setSpendCount(StringUtils.countOccurrencesOf(spendDTO.getSpendName(),",")+1);
         managementRepository.slipSave(spendDTO);

@@ -41,7 +41,11 @@ public class ManagementController {
 
     @PostMapping("/spend")
     public String spending(SpendDTO spendDTO) {
-        managementService.spending(spendDTO);
+        try {
+            managementService.spending(spendDTO);
+        } catch (NullPointerException e) {
+            return "manage/incorrectNameExist";
+        }
         return "manage/spent";
     }
 }
