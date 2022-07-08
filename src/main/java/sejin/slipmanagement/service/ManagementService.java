@@ -44,7 +44,7 @@ public class ManagementService {
                 throw new NullPointerException("올바르지 않은 이름이 있습니다.");
             }
         }
-
+        spendDTO.setSpendDate(spendDTO.getSpendDate());
         spendDTO.setSpendCount(StringUtils.countOccurrencesOf(spendDTO.getSpendName(),",")+1);
         managementRepository.slipSave(spendDTO);
 

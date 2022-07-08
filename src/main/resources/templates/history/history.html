@@ -11,6 +11,7 @@
         <table border="1">
             <thead>
             <tr>
+                <th>날짜</th>
                 <th>팀원</th>
                 <th>인원</th>
                 <th>장소</th>
@@ -19,6 +20,7 @@
             </thead>
             <tbody>
             <tr th:each="item : ${list}">
+                <td th:text="${item.date}"></td>
                 <td th:text="${item.people}"></td>
                 <td th:text="${item.count}"></td>
                 <td th:text="${item.place}"></td>

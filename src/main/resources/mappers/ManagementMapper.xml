@@ -65,6 +65,6 @@
     </update>
 
     <insert id="slipSave">
-        INSERT INTO history(people,place,count,expense) VALUES(#{spendName},#{spendPlace},${spendCount},${spendAmount})
+        INSERT INTO history(people,place,count,expense,date) VALUES(#{spendName},#{spendPlace},${spendCount},${spendAmount},#{spendDate})
     </insert>
 </mapper>

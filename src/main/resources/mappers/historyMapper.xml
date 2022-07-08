@@ -5,6 +5,6 @@
 
 <mapper namespace="sejin.slipmanagement.repository.HistoryRepository">
     <select id="findAll" resultType="sejin.slipmanagement.domain.History">
-        SELECT people,place,count,expense FROM history
+        SELECT people,place,count,expense,date FROM history
     </select>
 </mapper>
