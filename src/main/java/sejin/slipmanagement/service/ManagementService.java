@@ -35,8 +35,8 @@ public class ManagementService {
     @Transactional
     public void spending(SpendDTO spendDTO) {
 
-        managementDAO.slipSave(spendDTO);
         spendDTO.setSpend_count(StringUtils.countOccurrencesOf(spendDTO.getSpend_name(),",")+1);
+        managementDAO.slipSave(spendDTO);
 
         spendDTO.setSpend_name("'"+spendDTO.getSpend_name().replace(" ","").replace(",","','")+"'");
 //        System.out.println(spendDTO.getSpend_name());
