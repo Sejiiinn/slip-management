@@ -4,11 +4,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
-import sejin.slipmanagement.controller.AllocationDTO;
-import sejin.slipmanagement.controller.ManagementDTO;
-import sejin.slipmanagement.controller.SearchDTO;
-import sejin.slipmanagement.controller.SpendDTO;
-import sejin.slipmanagement.repository.ManagementDAO;
+import sejin.slipmanagement.dto.AllocationDTO;
+import sejin.slipmanagement.dto.ManagementDTO;
+import sejin.slipmanagement.dto.SearchDTO;
+import sejin.slipmanagement.dto.SpendDTO;
+import sejin.slipmanagement.repository.ManagementRepository;
 
 import java.util.List;
 
@@ -17,29 +17,28 @@ import java.util.List;
 @Transactional(readOnly = true)
 public class ManagementService {
 
-    private final ManagementDAO managementDAO;
+    private final ManagementRepository managementRepository;
 
     public List<ManagementDTO> searchAll() {
-        return managementDAO.findAll();
+        return managementRepository.findAll();
     }
 
     public List<ManagementDTO> searchByCondition(SearchDTO searchDTO) {
-        return managementDAO.findByCondition(searchDTO);
+        return managementRepository.findByCondition(searchDTO);
     }
 
     @Transactional
     public void allocationAll(AllocationDTO allocationDTO) {
-        managementDAO.allocation(allocationDTO);
+        managementRepository.allocation(allocationDTO);
     }
 
     @Transactional
     public void spending(SpendDTO spendDTO) {
 
-        spendDTO.setSpend_count(StringUtils.countOccurrencesOf(spendDTO.getSpend_name(),",")+1);
-        managementDAO.slipSave(spendDTO);
+        spendDTO.setSpendCount(StringUtils.countOccurrencesOf(spendDTO.getSpendName(),",")+1);
+        managementRepository.slipSave(spendDTO);
 
-        spendDTO.setSpend_name("'"+spendDTO.getSpend_name().replace(" ","").replace(",","','")+"'");
-//        System.out.println(spendDTO.getSpend_name());
-        managementDAO.spend(spendDTO);
+        spendDTO.setSpendName("'"+spendDTO.getSpendName().replace(" ","").replace(",","','")+"'");
+        managementRepository.spend(spendDTO);
     }
 }

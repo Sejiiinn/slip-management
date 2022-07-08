@@ -3,33 +3,33 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
-<mapper namespace="sejin.slipmanagement.repository.ManagementDAO">
-    <resultMap id="memberMap" type="sejin.slipmanagement.controller.MemberDTO">
+<mapper namespace="sejin.slipmanagement.repository.ManagementRepository">
+    <resultMap id="memberMap" type="sejin.slipmanagement.dto.MemberDTO">
         <id property="id" column="id"/>
         <result property="name" column="name"/>
     </resultMap>
 
-    <resultMap id="slipMap" type="sejin.slipmanagement.controller.SlipDTO">
+    <resultMap id="slipMap" type="sejin.slipmanagement.dto.SlipDTO">
         <result property="member_id" column="member_id"/>
         <result property="total" column="total"/>
         <result property="used" column="used"/>
     </resultMap>
 
-    <resultMap type="sejin.slipmanagement.controller.ManagementDTO" id="memberSlipMap">
+    <resultMap type="sejin.slipmanagement.dto.ManagementDTO" id="memberSlipMap">
         <collection property="memberDTO" resultMap="memberMap"/>
         <collection property="slipDTO" resultMap="slipMap"/>
     </resultMap>
 
 
     <select id="findAll" resultMap="memberSlipMap">
-        SELECT m.id, m.name, s.member_id, s.total, s.used
+        SELECT m.id, m.name, s.member_id as memberId, s.total, s.used
         FROM member m
         JOIN slip s
         ON m.id = s.member_id;
     </select>
 
     <select id="findByCondition" resultMap="memberSlipMap">
-        SELECT m.id, m.name, s.member_id, s.total, s.used
+        SELECT m.id, m.name, s.member_id as memberId, s.total, s.used
         FROM member m
         JOIN slip s
         ON m.id = s.member_id
@@ -54,16 +54,16 @@
 
     <update id="spend">
         UPDATE slip
-        SET used = used + ${spend_amount}/${spend_count}
+        SET used = used + ${spendAmount}/${spendCount}
         WHERE member_id IN
         (SELECT id
             FROM member m
             JOIN slip s
             ON m.id = s.member_id
-            WHERE m.name IN (${spend_name}))
+            WHERE m.name IN (${spendName}))
     </update>
 
     <insert id="slipSave">
-        INSERT INTO history(people,place,count,expense) VALUES(#{spend_name},#{spend_place},${spend_count},${spend_amount})
+        INSERT INTO history(people,place,count,expense) VALUES(#{spendName},#{spendPlace},${spendCount},${spendAmount})
     </insert>
 </mapper>

@@ -2,7 +2,7 @@ package sejin.slipmanagement.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
-import sejin.slipmanagement.controller.MemberDTO;
+import sejin.slipmanagement.dto.MemberDTO;
 import sejin.slipmanagement.domain.Member;
 import sejin.slipmanagement.domain.Slip;
 import sejin.slipmanagement.repository.MemberRepository;
@@ -29,7 +29,7 @@ public class MemberService {
 
         member.setId(memberDTO.getId());
         member.setName(memberDTO.getName());
-        slip.setMember_id(memberDTO.getId());
+        slip.setMemberId(memberDTO.getId());
 
         validateDuplicateMember(member); // 중복 회원 검증
 

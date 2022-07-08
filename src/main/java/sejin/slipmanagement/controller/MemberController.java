@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import sejin.slipmanagement.domain.Member;
+import sejin.slipmanagement.dto.MemberDTO;
 import sejin.slipmanagement.service.MemberService;
 
 import java.util.List;

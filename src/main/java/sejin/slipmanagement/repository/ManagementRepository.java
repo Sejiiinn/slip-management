@@ -1,15 +1,15 @@
 package sejin.slipmanagement.repository;
 
 import org.apache.ibatis.annotations.Mapper;
-import sejin.slipmanagement.controller.AllocationDTO;
-import sejin.slipmanagement.controller.ManagementDTO;
-import sejin.slipmanagement.controller.SearchDTO;
-import sejin.slipmanagement.controller.SpendDTO;
+import sejin.slipmanagement.dto.AllocationDTO;
+import sejin.slipmanagement.dto.ManagementDTO;
+import sejin.slipmanagement.dto.SearchDTO;
+import sejin.slipmanagement.dto.SpendDTO;
 
 import java.util.List;
 
 @Mapper
-public interface ManagementDAO {
+public interface ManagementRepository {
 
     List<ManagementDTO> findAll();
 

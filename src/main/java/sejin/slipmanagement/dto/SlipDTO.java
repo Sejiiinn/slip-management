@@ -1,10 +1,9 @@
-package sejin.slipmanagement.domain;
+package sejin.slipmanagement.dto;
 
 import lombok.Data;
 
 @Data
-public class Slip {
-
+public class SlipDTO {
     private int memberId;
     private int total;
     private int used;
