@@ -34,8 +34,6 @@
         FROM member m
         JOIN slip s
         ON m.id = s.member_id
-        ORDER BY m.name ASC
-
         <where>
             <if test="searchType == 'condition_id'">
                 m.id = #{condition}
@@ -47,6 +45,7 @@
                 s.total-s.used >= #{condition}
             </if>
         </where>
+        ORDER BY m.name ASC
     </select>
 
     <update id="allocation">
