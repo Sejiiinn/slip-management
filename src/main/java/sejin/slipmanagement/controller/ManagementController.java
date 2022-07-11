@@ -21,13 +21,13 @@ public class ManagementController {
 
     private final ManagementService managementService;
 
-    @GetMapping("")
+    @GetMapping
     public String firstPage(Model model) {
         model.addAttribute("list", managementService.searchAll());
         return "manage/management";
     }
 
-    @PostMapping("")
+    @PostMapping
     public String searching(Model model, SearchDTO searchDTO) {
         model.addAttribute("list", managementService.searchByCondition(searchDTO));
         return "manage/management";
@@ -43,7 +43,7 @@ public class ManagementController {
     public String spending(SpendDTO spendDTO) {
         try {
             managementService.spending(spendDTO);
-        } catch (NullPointerException e) {
+        } catch (IllegalArgumentException e) {
             return "manage/incorrectNameExist";
         }
         return "manage/spent";

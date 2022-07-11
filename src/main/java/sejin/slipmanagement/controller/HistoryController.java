@@ -17,7 +17,7 @@ public class HistoryController {
 
     private final HistoryService historyService;
 
-    @GetMapping("")
+    @GetMapping
     public String firstPage(Model model) {
 
         model.addAttribute("list", historyService.findHistories());

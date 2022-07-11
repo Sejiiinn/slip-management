@@ -41,7 +41,7 @@ public class ManagementService {
         for (String person:
              peopleList) {
             if(memberRepository.findByName(person).isEmpty()){
-                throw new NullPointerException("올바르지 않은 이름이 있습니다.");
+                throw new IllegalArgumentException("올바르지 않은 이름이 있습니다.");
             }
         }
         spendDTO.setSpendDate(spendDTO.getSpendDate());
